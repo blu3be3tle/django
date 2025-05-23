@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abu Ratin Shoeb Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Banner Section -->
+    <nav class="navbar navbar-expand-lg bg-secondary">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <h3 class="fw-bold mb-0" style="font-size: 1.25rem;">
+                    SH<span style="color: #00d1b2;">O</span>EB
+                </h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item"><a class="nav-link text-info" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="#" id="downloadResume">Resume ⬇</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="py-5" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+                    <h1 class="display-4 text-info fw-bold">HI! THIS IS ABU RATIN SHOEB</h1>
+                    <p class="lead">Software Engineer</p>
+                    <p class="mx-auto mx-lg-0" style="max-width: 600px;">MERN stack developer on a mission to level up
+                        from coding to leadership. I specialize in building web applications and am determined to become
+                        a Full Stack Software Engineer. Passionate about turning creative concepts into functional code,
+                        I am always up for collaborative projects and eager to lead dynamic teams in creating meaningful
+                        software solutions.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="./files/img.png" alt="Abu Ratin Shoeb" class="img-fluid rounded" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="container py-5" id="portfolio">
+        <h2 class="text-info display-5 mb-4">Portfolio</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div id="portfolioSlider" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./files/Screenshot 2025-05-23 at 8.22.24 PM.png" class="d-block w-100 rounded"
+                                alt="Blad">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./files/Screenshot 2025-05-23 at 8.32.48 PM.png" class="d-block w-100 rounded"
+                                alt="Blad">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./files/ 2025-05-23 at 8.32.57 PM.png" class="d-block w-100 rounded" alt="Blad">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./files/ 2025-05-23 at 8.33.08 PM.png" class="d-block w-100 rounded" alt="Blad">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#portfolioSlider"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#portfolioSlider"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3 class="text-info h4">Blad - A Blood Donation Platform ⚡ ⚙</h3>
+                <p class="mb-3">Blad is a blood donation platform with a robust user role system, ensuring distinct
+                    privileges for each role. Admins can view and edit all user information and donation requests,
+                    overseeing the entire platform. Volunteers can access donation request lists and update their
+                    statuses in real time, while donors can create new requests—specifying blood type, location, and
+                    urgency—and view only their own contributions for privacy. <br> <br> The platform is built using
+                    React for a dynamic, responsive frontend, styled with Tailwind CSS for a visually appealing
+                    experience. The backend leverages MongoDB for efficient data storage, Express.js for scalable APIs,
+                    and JWT for secure authentication. Firebase Authentication ensures reliable user verification, and
+                    Axios facilitates seamless HTTP requests between the frontend and backend. The entire application is
+                    deployed on Firebase, ensuring accessibility and reliability.</p>
+                <a href="https://blad-donate.web.app/" class="btn btn-outline-light me-2">Live Link</a>
+                <a href="https://github.com/Be3tle/blad-mern-client-side" class="btn btn-outline-light">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Experience and Education Section -->
+    <section class="container py-5" id="skills">
+        <h2 class="text-info display-5 mb-4">My Education</h2>
+        <p class="mb-4">B.A in English Language, Dhaka University of Dhaka <br> 2019 - 2023</p>
+        <h3 class="text-info h5 mb-3">Expertise:</h3>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-secondary p-2">React</span>
+            <span class="badge bg-secondary p-2">Node.js</span>
+            <span class="badge bg-secondary p-2">Express</span>
+            <span class="badge bg-secondary p-2">Tailwind</span>
+            <span class="badge bg-secondary p-2">MongoDB</span>
+            <span class="badge bg-secondary p-2">Firebase</span>
+            <span class="badge bg-secondary p-2">JavaScript</span>
+        </div>
+        <h3 class="text-info h5 mb-3">Comfortable:</h3>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-secondary p-2">MySQL</span>
+            <span class="badge bg-secondary p-2">Redux</span>
+            <span class="badge bg-secondary p-2">Socket.io</span>
+            <span class="badge bg-secondary p-2">C++</span>
+            <span class="badge bg-secondary p-2">Python</span>
+            <span class="badge bg-secondary p-2">TypeScript</span>
+            <span class="badge bg-secondary p-2">Next.js</span>
+        </div>
+        <h3 class="text-info h5 mb-3">Familiar:</h3>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-secondary p-2">Django</span>
+            <span class="badge bg-secondary p-2">Docker</span>
+            <span class="badge bg-secondary p-2">Bootstrap</span>
+            <span class="badge bg-secondary p-2">React Query</span>
+        </div>
+        <h3 class="text-info h5 mb-3">Tools:</h3>
+        <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-secondary p-2">VS Code</span>
+            <span class="badge bg-secondary p-2">Netlify</span>
+            <span class="badge bg-secondary p-2">Vercel</span>
+            <span class="badge bg-secondary p-2">Heroku</span>
+            <span class="badge bg-secondary p-2">Git</span>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="container py-5" id="about">
+        <h2 class="text-info display-5 mb-4">Contact with Me</h2>
+        <form class="mx-auto" style="max-width: 500px;">
+            <div class="mb-3">
+                <input type="text" class="form-control bg-secondary text-white border-secondary"
+                    placeholder="please type your name" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control bg-secondary text-white border-secondary"
+                    placeholder="please type your Email" required>
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control bg-secondary text-white border-secondary" rows="3"
+                    placeholder="Type here message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary">Send</button>
+        </form>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-secondary py-4 text-center">
+        <p class="mb-2">Abu Ratin Shoeb © 2023 - All right reserved</p>
+        <div class="d-flex justify-content-center gap-2">
+            <a href="https://github.com/blu3be3tle" target="_blank" class="text-white"><i
+                    class="bi bi-github fs-4"></i></a>
+            <a href="https://www.linkedin.com/in/aburatinshoeb" target="_blank" class="text-white"><i
+                    class="bi bi-linkedin fs-4"></i></a>
+            <a href="https://www.twitter.com/aburatinshoeb" target="_blank" class="text-white"><i
+                    class="bi bi-twitter fs-4"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('downloadResume').addEventListener('click', function () {
+            const link = document.createElement('a');
+            link.href = './files/resume.pdf';
+            link.download = `Shoeb's_Resume.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+
+</html>
