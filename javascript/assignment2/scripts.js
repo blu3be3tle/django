@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let foodItemsDiv = document.getElementById('foodItems');
+    // DOM Elements
+    let productItemsDiv = document.getElementById('productItems');
     let searchInput = document.getElementById('searchInput');
     let searchBtn = document.getElementById('searchBtn');
     let notFound = document.getElementById('notFound');
@@ -10,41 +11,45 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedItems = [];
     let itemCount = 0;
 
-
-    async function fetchFoodItems(query = '') {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+    // Fetch products from api
+    async function fetchProducts(query = '') {
+        const response = await fetch('https://dummyjson.com/products');
         const data = await response.json();
-        const meals = data.meals || [];
-        displayFoodItems(meals);
+        let products = data.products || [];
+        if (query) {
+            products = products.filter(product =>
+                product.title.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+        displayProducts(products);
 
     }
 
-
-    function displayFoodItems(meals) {
-        foodItemsDiv.innerHTML = '';
-        notFound.style.display = meals.length == 0 ? 'block' : 'none';
-
-        for (let i = 0; i < meals.length; i++) {
-            let meal = meals[i];
-            let shortInstructions = meal.strInstructions ? meal.strInstructions.slice(0, 15) + '...' : 'No details...';
+    // Display products
+    function displayProducts(products) {
+        productItemsDiv.innerHTML = '';
+        notFound.style.display = products.length == 0 ? 'block' : 'none';
+        for (let i = 0; i < products.length; i++) {
+            let product = products[i];
+            let shortDescription = product.description ? product.description.slice(0, 15) + '...' : 'No details...';
             let card = document.createElement('div');
-            card.className = 'col-md-4 mb-4';
+            card.className = 'col-md-6 mb-4';
             card.innerHTML = `
                 <div class="card bg-light text-black">
-                    <img src="${meal.strMealThumb}" class="card-img-top" alt="${meal.strMeal}">
+                    <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
                     <div class="card-body">
-                        <h5 class="card-title">${meal.strMeal}</h5>
-                        <p class="card-text">Category: ${meal.strCategory || 'N/A'}</p>
-                        <p class="card-text">Details: ${shortInstructions}</p>
-                        <button class="btn btn-outline-dark me-2 add-to-group" data-name="${meal.strMeal}">Add to Group</button>
-                        <button class="btn btn-outline-success details-btn" data-json='${JSON.stringify(meal)}'>Details</button>
+                        <h5 class="card-title">${product.title}</h5>
+                        <p class="card-text">Category: ${product.category || 'N/A'}</p>
+                        <p class="card-text">Details: ${shortDescription}</p>
+                        <button class="btn btn-outline-dark me-2 add-to-group" data-name="${product.title}">Add to Group</button>
+                        <button class="btn btn-outline-success details-btn" data-json='${JSON.stringify(product)}'>Details</button>
                     </div>
                 </div>
             `;
-            foodItemsDiv.appendChild(card);
+            productItemsDiv.appendChild(card);
         }
 
-
+        // Add event listeners
         let addButtons = document.getElementsByClassName('add-to-group');
         for (let btn of addButtons) {
             btn.addEventListener('click', function () {
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
+    // Add to Group
     function addToGroup(name) {
         if (selectedItems.length >= 7) {
             alert('Cannot add more than 7 items!');
@@ -74,26 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedItemsList.appendChild(li);
     }
 
-
-    function showDetails(meal) {
+    // Show details in modal
+    function showDetails(product) {
         modalBody.innerHTML = `
-            <img src="${meal.strMealThumb}" class="img-fluid mb-3" alt="${meal.strMeal}">
-            <p><strong>Name:</strong> ${meal.strMeal}</p>
-            <p><strong>Category:</strong> ${meal.strCategory || 'N/A'}</p>
-            <p><strong>Instructions:</strong> ${meal.strInstructions || 'No instructions'}</p>
-            <p><strong>Area:</strong> ${meal.strArea || 'N/A'}</p>
-            <p><strong>Ingredient 1:</strong> ${meal.strIngredient1 || 'N/A'}</p>
+            <img src="${product.thumbnail}" class="img-fluid mb-3" alt="${product.title}">
+            <p><strong>Name:</strong> ${product.title}</p>
+            <p><strong>Category:</strong> ${product.category || 'N/A'}</p>
+            <p><strong>Description:</strong> ${product.description || 'No description'}</p>
+            <p><strong>Price:</strong> $${product.price || 'N/A'}</p>
+            <p><strong>Brand:</strong> ${product.brand || 'N/A'}</p>
         `;
         let modal = new bootstrap.Modal(document.getElementById('detailsModal'));
         modal.show();
     }
 
-
+    // Search functionality
     searchBtn.addEventListener('click', function () {
         let searchTerm = searchInput.value.trim();
-        fetchFoodItems(searchTerm);
+        fetchProducts(searchTerm);
     });
 
-
-    fetchFoodItems();
+    // Load Default Items
+    fetchProducts();
 });
