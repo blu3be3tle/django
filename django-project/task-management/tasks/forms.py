@@ -14,3 +14,5 @@ class TaskForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields['assigned_to'].choices = [
             (emp.id, emp.name) for emp in employees]
+    
+    
