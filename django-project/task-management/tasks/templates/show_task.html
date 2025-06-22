@@ -9,7 +9,10 @@
     <div>
       <ul>
         {% for task in tasks %}
-          <li>{{task}}</li>
+          <li>
+            <p>{{ task }}</p>
+            <span>{{ task.status }}</span>
+          </li>
         {% endfor %}
       </ul>
     </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from tasks.forms import TaskForm, TaskModelForm
-from tasks.models import Employee, Task
+from tasks.models import Employee, Task, TaskDetail
 
 # Create your views here.
 
@@ -33,5 +33,6 @@ def create_task(request):
 
 def view_task(request):
     # retrieve all data from task model
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(status='PENDING')
+    # tasks = TaskDetail.objects.exclude(priority='L')
     return render(request, "show_task.html", {"tasks": tasks})
