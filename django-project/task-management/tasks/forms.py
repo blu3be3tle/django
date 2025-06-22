@@ -47,7 +47,6 @@ class TaskForm(forms.Form):
         employees = kwargs.pop("employees", [])
         super().__init__(*args, **kwargs)
         self.fields['assigned_to'].choices = [
-            # Assuming you're using User model
             (emp.id, emp.username) for emp in employees
         ]
 
@@ -62,5 +61,6 @@ class TaskModelForm(StyledFormMixin, forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        employees = kwargs.pop("employees", User.objects.all())
         super().__init__(*args, **kwargs)
-        self.apply_styled_widgets()
+        self.apply_styled_widgets() 
