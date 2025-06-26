@@ -27,7 +27,6 @@ def create_task(request):
             form.save()
 
             return render(request, 'task_form.html', {"form": form, "message": "task added successfully"})
-
     context = {"form": form}
     return render(request, "task_form.html", context)
 

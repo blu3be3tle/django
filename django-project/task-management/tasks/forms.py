@@ -4,7 +4,6 @@ from tasks.models import Task
 
 
 class StyledFormMixin:
-    """Mixin to apply Tailwind-style classes to form fields."""
     default_classes = "border-2 border-gray-300 w-full p-3 rounded-lg shadow-sm focus:outline-none focus:border-rose-500 focus:ring-rose-500"
 
     def apply_styled_widgets(self):
@@ -36,8 +35,7 @@ class StyledFormMixin:
 
 class TaskForm(forms.Form):
     title = forms.CharField(max_length=250, label="Task Title")
-    description = forms.CharField(
-        widget=forms.Textarea, label="Task Description")
+    description = forms.CharField(widget=forms.Textarea, label="Task Description")
     due_date = forms.DateField(widget=forms.SelectDateWidget, label="Due Date")
     assigned_to = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple, choices=[], label="Assigned To"
@@ -63,4 +61,4 @@ class TaskModelForm(StyledFormMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         employees = kwargs.pop("employees", User.objects.all())
         super().__init__(*args, **kwargs)
-        self.apply_styled_widgets() 
+        self.apply_styled_widgets()
