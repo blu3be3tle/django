@@ -10,7 +10,8 @@ from django.db.models import Q, Count, Max, Min, Avg
 
 
 def manager_dashboard(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.select_related(
+        'details').prefetch_related('assigned_to').all()
 
     # tasks
     total_task = tasks.count()
