@@ -3,7 +3,6 @@
   Manager Dashboard
 {% endblock %}
 {% block tasks %}
-  <!-- Task Table -->
   <div class="bg-white rounded-xl shadow-sm">
     <div class="grid grid-cols-4 p-4 border-b border-gray-100 text-sm text-gray-500">
       <div>TASK TITLE</div>
@@ -11,59 +10,45 @@
       <div>TEAM</div>
       <div>CREATED AT</div>
     </div>
-    <!-- Task Items -->
+
     <div class="divide-y divide-gray-100">
-      <!-- Task 1 -->
-      <div class="grid grid-cols-4 gap-4 p-4 items-center">
-        <div class="flex items-center gap-2">
-          <div class="w-2 h-2 rounded-full bg-green-500"></div>
-          <span>Test Low Task</span>
-        </div>
-        <div>
-          <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm">Low</span>
-        </div>
-        <div class="flex -space-x-2">
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">CA</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">JS</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">B</div>
-        </div>
-        <div class="text-gray-500">9 months ago</div>
-      </div>
+      {% if tasks %}
+        {% for task in tasks %}
+          <div class="grid grid-cols-4 gap-4 p-4 items-center">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-green-500"></div>
+              <span>{{ task.title }}</span>
+              <a href="{% url 'update-task' task.id %}" class="px-2 py-1 bg-green-500 text-white text-xs rounded">Edit</a>
+              <form action="{% url 'delete-task' task.id %}" method="POST" class="inline-block ml-2">
+                {% csrf_token %}
+                <button type="submit" class="px-2 py-1 bg-red-500 text-white text-xs rounded">Delete</button>
+              </form>
+            </div>
 
-      <!-- Task 2 -->
-      <div class="grid grid-cols-4 gap-4 p-4 items-center">
-        <div class="flex items-center gap-2">
-          <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-          <span>Test task</span>
-        </div>
-        <div>
-          <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm">Normal</span>
-        </div>
-        <div class="flex -space-x-2">
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">AJ</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">EV</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">B</div>
-        </div>
-        <div class="text-gray-500">9 months ago</div>
-      </div>
+            <div>
+              {% with detail=task.taskdetail_set.first %}
+                {% if detail %}
+                  <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm">{{ detail.get_priority_display }}</span>
+                {% else %}
+                  <span class="text-gray-400 text-sm">N/A</span>
+                {% endif %}
+              {% endwith %}
+            </div>
 
-      <!-- Task 3 -->
-      <div class="grid grid-cols-4 gap-4 p-4 items-center">
-        <div class="flex items-center gap-2">
-          <div class="w-2 h-2 rounded-full bg-orange-500"></div>
-          <span>Test task</span>
-        </div>
-        <div>
-          <span class="px-3 py-1 rounded-full bg-red-50 text-red-600 text-sm">High</span>
-        </div>
-        <div class="flex -space-x-2">
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">CA</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">JS</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">AJ</div>
-          <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">B</div>
-        </div>
-        <div class="text-gray-500">10 months ago</div>
-      </div>
+            <div class="flex -space-x-2">
+              {% for emp in task.assigned_to.all %}
+                <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white">{{ emp.name|slice:':1' }}</div>
+              {% empty %}
+                <span class="text-xs text-gray-400">No assignees</span>
+              {% endfor %}
+            </div>
+
+            <div class="text-gray-500 text-sm">{{ task.created_at|timesince }} ago</div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="p-4 text-center text-gray-400">No tasks found.</div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
