@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+<<<<<<< HEAD
 from tasks.forms import TaskForm, TaskModelForm, TaskDetailModelForm
 from tasks.models import Employee, Task, TaskDetail, Project
 from datetime import date
 from django.db.models import Q, Count, Max, Min, Avg
 from django.contrib import messages
 
+=======
+from tasks.forms import TaskForm, TaskModelForm
+from tasks.models import Employee, Task, TaskDetail
+>>>>>>> e346699 (practice4: filter data)
 
 # Create your views here.
 
@@ -146,6 +151,7 @@ def view_task(request):
 
 def view_task(request):
     # retrieve all data from task model
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(status='PENDING')
+    # tasks = TaskDetail.objects.exclude(priority='L')
     return render(request, "show_task.html", {"tasks": tasks})
 >>>>>>> 4437d40 (practice4: data get method)
