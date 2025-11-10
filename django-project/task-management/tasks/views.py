@@ -92,6 +92,7 @@ def create_task(request):
             messages.success(request, "Task Created Successfully")
             return redirect('create-task')
 
+<<<<<<< HEAD
     context = {"task_form": task_form, "task_detail_form": task_detail_form}
     return render(request, "task_form.html", context)
 
@@ -138,3 +139,13 @@ def view_task(request):
     projects = Project.objects.annotate(
         num_task=Count('task')).order_by('num_task')
     return render(request, "show_task.html", {"projects": projects})
+=======
+    context = {"form": form}
+    return render(request, "task_form.html", context)
+
+
+def view_task(request):
+    # retrieve all data from task model
+    tasks = Task.objects.all()
+    return render(request, "show_task.html", {"tasks": tasks})
+>>>>>>> 4437d40 (practice4: data get method)

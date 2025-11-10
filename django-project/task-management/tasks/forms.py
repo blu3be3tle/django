@@ -55,7 +55,25 @@ class StyledFormMixin:
                 })
 
 
+<<<<<<< HEAD
 # Django Model Form
+=======
+class TaskForm(forms.Form):
+    title = forms.CharField(max_length=250, label="Task Title")
+    description = forms.CharField(
+        widget=forms.Textarea, label="Task Description")
+    due_date = forms.DateField(widget=forms.SelectDateWidget, label="Due Date")
+    assigned_to = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple, choices=[], label="Assigned To"
+    )
+
+    def __init__(self, *args, **kwargs):
+        employees = kwargs.pop("employees", [])
+        super().__init__(*args, **kwargs)
+        self.fields['assigned_to'].choices = [
+            (emp.id, emp.username) for emp in employees
+        ]
+>>>>>>> 4437d40 (practice4: data get method)
 
 
 class TaskModelForm(StyledFormMixin, forms.ModelForm):
@@ -67,6 +85,7 @@ class TaskModelForm(StyledFormMixin, forms.ModelForm):
             'assigned_to': forms.CheckboxSelectMultiple
         }
 
+<<<<<<< HEAD
     """ Widget using mixins """
 
     def __init__(self, *arg, **kwarg):
@@ -82,3 +101,9 @@ class TaskDetailModelForm(StyledFormMixin, forms.ModelForm):
     def __init__(self, *arg, **kwarg):
         super().__init__(*arg, **kwarg)
         self.apply_styled_widgets()
+=======
+    def __init__(self, *args, **kwargs):
+        employees = kwargs.pop("employees", User.objects.all())
+        super().__init__(*args, **kwargs)
+        self.apply_styled_widgets() 
+>>>>>>> 4437d40 (practice4: data get method)
